@@ -1,0 +1,19 @@
+services:
+  weatherbot:
+    container_name: weatherbot
+    image: git.postfmly.com/admin/weatherbot:arm64
+    restart: unless-stopped
+    ports:
+      - "8010:8010"
+    environment:
+      - LOGO_PORT=8010
+      - LOGO_URL=https://weatherbot.postfmly.us/weathererbot.webp
+      - TZ=America/Chicago
+    env_file: .env
+    labels:
+      - wud.display.name=WeatherBot
+      - homepage.group=Personal
+      - homepage.name=WeatherBot
+      - homepage.icon=https://weatherbot.postfmly.com/weatherbot.webp
+
+networks: {}
