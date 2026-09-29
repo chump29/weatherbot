@@ -5,15 +5,9 @@ import { expectTypeOf } from "expect-type"
 
 import { env } from "../../utils/env.ts"
 
-const { CHANNEL_ID, COLOR, DEBUG, LOGO_NAME, LOGO_PATH, LOGO_PORT, LOGO_URL, NAME, TOKEN } = env as typeof env
+const { COLOR, DEBUG, LOGO_NAME, LOGO_PATH, LOGO_PORT, LOGO_URL, NAME, TOKEN } = env as typeof env
 
 describe("env", (): void => {
-  test("CHANNEL_ID", (): void => {
-    expectTypeOf(CHANNEL_ID).toEqualTypeOf<string>()
-
-    expect(CHANNEL_ID.length).toBeGreaterThan(0)
-  })
-
   test("COLOR", (): void => {
     expectTypeOf(COLOR).toEqualTypeOf<string>()
 

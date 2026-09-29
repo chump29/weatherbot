@@ -53,7 +53,6 @@
 
 | 📝 Description | 📌 Variable |  {...} Value   |
 |:--------------:|:-----------:|:--------------:|
-|   Channel ID   | CHANNEL_ID  |      [id]      |
 |  Embed Color   |    COLOR    |    #78866b     |
 |     Debug      |    DEBUG    | true/**false** |
 |    Logo URL    |  LOGO_URL   |     [url]      |
