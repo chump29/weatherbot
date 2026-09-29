@@ -7,7 +7,7 @@ services:
       - "8010:8010"
     environment:
       - LOGO_PORT=8010
-      - LOGO_URL=https://weatherbot.postfmly.us/weathererbot.webp
+      - LOGO_URL=https://weatherbot.postfmly.us/weatherbot.webp
       - TZ=America/Chicago
     env_file: .env
     labels:
