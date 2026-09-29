@@ -81,12 +81,5 @@
   "engines": {
     "bun": "^1.4.2"
   },
-  "engineStrict": true,
-  "trustedDependencies": [
-    "@postfmly/checkrate",
-    "@postfmly/config",
-    "@postfmly/logger",
-    "@postfmly/logoserver",
-    "@postfmly/types"
-  ]
+  "engineStrict": true
 }
