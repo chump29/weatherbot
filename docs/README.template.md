@@ -24,7 +24,7 @@
 
 ### 🔗 Invite Link
 
-[Add WeatherBot](https://discord.com/oauth2/authorize?client_id=1554292820934656000&permissions=18432&integration_type=0&scope=bot)
+[Add WeatherBot](https://discord.com/oauth2/authorize?client_id=1554292820934656000&permissions=16384&integration_type=0&scope=bot)
 
 ---
 
@@ -35,15 +35,14 @@
 | ⚙️ Permissions |
 |:--------------:|
 |   EmbedLinks   |
-|  SendMessages  |
 
 #### Commands:
 
-|     📋 Task     |      🔧 Command      | ⚙️ Permission |
-|:---------------:|:--------------------:|:-------------:|
-| Display Weather | `/weather <zipcode>` | SendMessages  |
-|      Info       |       `/info`        | SendMessages  |
-|      Ping       |       `/ping`        | SendMessages  |
+|     📋 Task     |      🔧 Command      |
+|:---------------:|:--------------------:|
+| Display Weather | `/weather <zipcode>` |
+|      Info       |       `/info`        |
+|      Ping       |       `/ping`        |
 
 ---
 

@@ -10,7 +10,6 @@ import {
   type HexColorString,
   InteractionContextType,
   MessageFlags,
-  PermissionFlagsBits,
   type RESTPostAPIChatInputApplicationCommandsJSONBody,
   SlashCommandBuilder,
   type SlashCommandStringOption
@@ -40,7 +39,6 @@ const create = (): RESTPostAPIChatInputApplicationCommandsJSONBody =>
           .setMinLength(ZIP_LEN)
           .setMaxLength(ZIP_LEN)
     )
-    .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages)
     .setContexts(InteractionContextType.Guild)
     .toJSON()
 
