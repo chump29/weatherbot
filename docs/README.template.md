@@ -54,24 +54,21 @@
 |:--------------:|:-----------:|:--------------:|
 |  Embed Color   |    COLOR    |    #78866b     |
 |     Debug      |    DEBUG    | true/**false** |
-|    Logo URL    |  LOGO_URL   |     [url]      |
 |    Bot Name    |    NAME     |   WeatherBot   |
-|   Bot Token    |    TOKEN    |    [token]     |
+|   Bot Token    |    TOKEN    |    \<token>    |
 
 ##### From `@postfmly/logoserver`:
 
 | 📝 Description | 📌 Variable |    {...} Value    |
 |:--------------:|:-----------:|:-----------------:|
-|   IPv4/IPv6    |  LOGO_IPv6  |  true/**false**   |
 |   Logo Name    |  LOGO_NAME  |  weatherbot.webp  |
 |   Local Path   |  LOGO_PATH  |  ./utils/images   |
-|      Port      |  LOGO_PORT  | **Random**/[port] |
+|      Port      |  LOGO_PORT  | **random**/[port] |
+|    Logo URL    |  LOGO_URL   |      \<url>       |
 
 ##### From `@postfmly/checkrate`:
 
-| 📝 Description | 📌 Variable | {...} Value |
-|:--------------:|:-----------:|:-----------:|
-| Request Limit  |    RATE     |      1      |
+###### *NOTE: Rate limited to 1 request per 1 second*
 
 #### Deployment:
 

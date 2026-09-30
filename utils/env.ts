@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 import { type Optional } from "@postfmly/types"
 
 import { bool, cleanEnv, type ExactValidator, makeExactValidator, str, url } from "envalid"
@@ -60,7 +62,6 @@ if (Bun.env.NODE_ENV === "test") {
   const { simpleFaker: fake } = await import("@faker-js/faker")
 
   const word: string = "[a-zA-Z0-9]"
-
   fakeToken = fake.helpers.fromRegExp(
     `${word}{${UID_MIN_LEN},${UID_MAX_LEN}}[.]${word}{${TS_MIN_LEN},${TS_MAX_LEN}}[.]${word}{${HMAC_MIN_LEN},${HMAC_MAX_LEN}}`
   )

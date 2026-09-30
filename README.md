@@ -8,7 +8,7 @@
 ![discord.js](https://img.shields.io/badge/discord.js-^14.27.0-informational?style=plastic&logo=discord.js "discord.js")
 
 ![CodeQL](https://github.com/chump29/weatherbot/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
-![Coverage](https://img.shields.io/badge/Coverage-79.75%25-success?style=plastic&logo=jest "Coverage")
+![Coverage](https://img.shields.io/badge/Coverage-80.23%25-success?style=plastic&logo=jest "Coverage")
 
 ![NO AI](https://img.shields.io/badge/NO-AI-orange?style=plastic "NO AI") &nbsp;
 ![License](https://img.shields.io/github/license/chump29/weatherbot?style=plastic&color=blueviolet&label=License&logo=gplv3 "GPLv3") &nbsp; <!-- markdownlint-disable MD013 -->
@@ -54,24 +54,21 @@
 |:--------------:|:-----------:|:--------------:|
 |  Embed Color   |    COLOR    |    #78866b     |
 |     Debug      |    DEBUG    | true/**false** |
-|    Logo URL    |  LOGO_URL   |     [url]      |
 |    Bot Name    |    NAME     |   WeatherBot   |
-|   Bot Token    |    TOKEN    |    [token]     |
+|   Bot Token    |    TOKEN    |    \<token>    |
 
 ##### From `@postfmly/logoserver`:
 
 | 📝 Description | 📌 Variable |    {...} Value    |
 |:--------------:|:-----------:|:-----------------:|
-|   IPv4/IPv6    |  LOGO_IPv6  |  true/**false**   |
 |   Logo Name    |  LOGO_NAME  |  weatherbot.webp  |
 |   Local Path   |  LOGO_PATH  |  ./utils/images   |
-|      Port      |  LOGO_PORT  | **Random**/[port] |
+|      Port      |  LOGO_PORT  | **random**/[port] |
+|    Logo URL    |  LOGO_URL   |      \<url>       |
 
 ##### From `@postfmly/checkrate`:
 
-| 📝 Description | 📌 Variable | {...} Value |
-|:--------------:|:-----------:|:-----------:|
-| Request Limit  |    RATE     |      1      |
+###### *NOTE: Rate limited to 1 request per 1 second*
 
 #### Deployment:
 
