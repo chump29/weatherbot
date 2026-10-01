@@ -8,10 +8,10 @@ import {
   SlashCommandBuilder
 } from "discord.js"
 
-import { bucket } from "../../index.ts"
+import { bucket } from "../../utils/bucket.ts"
 import { env } from "../../utils/env.ts"
 
-const { NAME } = env as typeof env
+const { NAME } = env as Pick<typeof env, "NAME">
 
 const create = (): RESTPostAPIChatInputApplicationCommandsJSONBody =>
   new SlashCommandBuilder()

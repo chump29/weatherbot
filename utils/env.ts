@@ -56,10 +56,13 @@ const portValidator: ExactValidator<"random" | number> = makeExactValidator<"ran
 )
 const tokenValidator: ExactValidator<string> = makeExactValidator<string>((s: string): string => parse(TokenSchema, s))
 
+let fakeURL: Optional<string>
 let fakeToken: Optional<string>
 
 if (Bun.env.NODE_ENV === "test") {
-  const { simpleFaker: fake } = await import("@faker-js/faker")
+  const { fakerEN_US: fake } = await import("@faker-js/faker")
+
+  fakeURL = fake.internet.url()
 
   const word: string = "[a-zA-Z0-9]"
   fakeToken = fake.helpers.fromRegExp(
@@ -73,7 +76,7 @@ const env = cleanEnv(Bun.env, {
   LOGO_NAME: str({ default: "weatherbot.webp" }),
   LOGO_PATH: str({ default: "./utils/images" }),
   LOGO_PORT: portValidator({ default: "random" }),
-  LOGO_URL: url({ testDefault: "my.url" }),
+  LOGO_URL: url({ testDefault: fakeURL }),
   NAME: str({ default: "WeatherBot" }),
   TOKEN: tokenValidator({ testDefault: fakeToken })
 })

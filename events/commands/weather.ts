@@ -17,10 +17,10 @@ import {
 import { digits, nonEmpty, pipe, type SafeParseResult, safeParse, string, trim } from "valibot"
 import { find } from "zipcodes-us"
 
-import { bucket } from "../../index.ts"
+import { bucket } from "../../utils/bucket.ts"
 import { env } from "../../utils/env.ts"
 
-const { COLOR } = env as typeof env
+const { COLOR } = env as Pick<typeof env, "COLOR">
 
 const ZIP_LEN: number = 5
 
@@ -48,6 +48,8 @@ const getImage = async (city: string, state: string, zipcode: string): Promise<N
 
     const response: Response = await fetch(`https://wttr.in/${location}_0q.png`)
     if (!response.ok) {
+      error(`Fetch error status: ${response.status}`)
+
       return null
     }
 

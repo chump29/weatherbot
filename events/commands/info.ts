@@ -10,11 +10,11 @@ import {
   SlashCommandBuilder
 } from "discord.js"
 
-import { bucket } from "../../index.ts"
 import { author, version } from "../../package.json" with { type: "json" }
+import { bucket } from "../../utils/bucket.ts"
 import { env } from "../../utils/env.ts"
 
-const { LOGO_URL, NAME, COLOR } = env as typeof env
+const { COLOR, LOGO_URL, NAME } = env as Pick<typeof env, "COLOR" | "LOGO_URL" | "NAME">
 
 const create = (): RESTPostAPIChatInputApplicationCommandsJSONBody =>
   new SlashCommandBuilder()
