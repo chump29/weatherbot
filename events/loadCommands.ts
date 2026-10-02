@@ -11,7 +11,7 @@ interface IInteractionCreate {
 }
 
 const loadCommands = async (client: Client): Promise<void> => {
-  const interactionCreate: IInteractionCreate = await import(`${import.meta.dirname}/${Events.InteractionCreate}.ts`)
+  const interactionCreate: IInteractionCreate = await import(`${import.meta.dir}/${Events.InteractionCreate}.ts`)
   client.on(Events.InteractionCreate, async (interaction: Interaction): Promise<void> => {
     try {
       await interactionCreate.invoke(interaction)
@@ -20,7 +20,7 @@ const loadCommands = async (client: Client): Promise<void> => {
     }
   })
 
-  const clientReady: IClientReady = await import(`${import.meta.dirname}/${Events.ClientReady}.ts`)
+  const clientReady: IClientReady = await import(`${import.meta.dir}/${Events.ClientReady}.ts`)
   client.once(Events.ClientReady, async (c: Client): Promise<void> => {
     await clientReady.invoke(c)
   })

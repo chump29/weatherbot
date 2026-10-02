@@ -5,55 +5,53 @@ import { expectTypeOf } from "expect-type"
 
 import { env } from "../../utils/env.ts"
 
-const { COLOR, DEBUG, LOGO_NAME, LOGO_PATH, LOGO_PORT, LOGO_URL, NAME, TOKEN } = env as typeof env
-
 describe("env", (): void => {
   test("COLOR", (): void => {
-    expectTypeOf(COLOR).toEqualTypeOf<string>()
+    expectTypeOf(env.COLOR).toEqualTypeOf<string>()
 
-    expect(COLOR).toBe("#78866b")
+    expect(env.COLOR).toBe("#78866b")
   })
 
   test("DEBUG", (): void => {
-    expectTypeOf(DEBUG).toEqualTypeOf<boolean>()
+    expectTypeOf(env.DEBUG).toEqualTypeOf<boolean>()
 
-    expect(DEBUG).toBeTrue()
+    expect(env.DEBUG).toBeTrue()
   })
 
   test("LOGO_NAME", (): void => {
-    expectTypeOf(LOGO_NAME).toEqualTypeOf<string>()
+    expectTypeOf(env.LOGO_NAME).toEqualTypeOf<string>()
 
-    expect(LOGO_NAME).toBe("weatherbot.webp")
+    expect(env.LOGO_NAME).toBe("weatherbot.webp")
   })
 
   test("LOGO_PATH", (): void => {
-    expectTypeOf(LOGO_PATH).toEqualTypeOf<string>()
+    expectTypeOf(env.LOGO_PATH).toEqualTypeOf<string>()
 
-    expect(LOGO_PATH).toBe("./utils/images")
+    expect(env.LOGO_PATH).toBe("./utils/images")
   })
 
   test("LOGO_PORT", (): void => {
-    expectTypeOf(LOGO_PORT).toEqualTypeOf<number | "random">()
+    expectTypeOf(env.LOGO_PORT).toEqualTypeOf<number | "random">()
 
-    expect(LOGO_PORT as string).toBe("random")
+    expect(env.LOGO_PORT as string).toBe("random")
   })
 
   test("LOGO_URL", (): void => {
-    expectTypeOf(LOGO_URL).toEqualTypeOf<string>()
+    expectTypeOf(env.LOGO_URL).toEqualTypeOf<string>()
 
-    expect(LOGO_URL.length).toBeGreaterThan(0)
+    expect(env.LOGO_URL.length).toBeGreaterThan(0)
   })
 
   test("NAME", (): void => {
-    expectTypeOf(NAME).toEqualTypeOf<string>()
+    expectTypeOf(env.NAME).toEqualTypeOf<string>()
 
-    expect(NAME).toBe("WeatherBot")
+    expect(env.NAME).toBe("WeatherBot")
   })
 
   test("TOKEN", (): void => {
-    expectTypeOf(TOKEN).toEqualTypeOf<string>()
+    expectTypeOf(env.TOKEN).toEqualTypeOf<string>()
 
-    expect(TOKEN.length).toBeGreaterThan(0)
+    expect(env.TOKEN.length).toBeGreaterThan(0)
   })
 
   test("print", async (): Promise<void> => {

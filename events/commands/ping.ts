@@ -11,12 +11,10 @@ import {
 import { bucket } from "../../utils/bucket.ts"
 import { env } from "../../utils/env.ts"
 
-const { NAME } = env as Pick<typeof env, "NAME">
-
 const create = (): RESTPostAPIChatInputApplicationCommandsJSONBody =>
   new SlashCommandBuilder()
-    .setName(parse(import.meta.filename).name)
-    .setDescription(`Ping ${NAME}`)
+    .setName(parse(import.meta.file).name)
+    .setDescription(`Ping ${env.NAME}`)
     .setContexts(InteractionContextType.Guild)
     .toJSON()
 

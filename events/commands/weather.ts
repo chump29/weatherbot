@@ -20,15 +20,13 @@ import { find } from "zipcodes-us"
 import { bucket } from "../../utils/bucket.ts"
 import { env } from "../../utils/env.ts"
 
-const { COLOR } = env as Pick<typeof env, "COLOR">
-
 const ZIP_LEN: number = 5
 
 const ZipCodeSchema = pipe(string(), trim(), nonEmpty(), digits())
 
 const create = (): RESTPostAPIChatInputApplicationCommandsJSONBody =>
   new SlashCommandBuilder()
-    .setName(parse(import.meta.filename).name)
+    .setName(parse(import.meta.file).name)
     .setDescription("Display current weather")
     .addStringOption(
       (option: SlashCommandStringOption): SlashCommandStringOption =>
@@ -94,7 +92,7 @@ const invoke = async (interaction: ChatInputCommandInteraction): Promise<void> =
   }
 
   await interaction.editReply({
-    embeds: [new EmbedBuilder().setColor(COLOR as HexColorString).setImage(`attachment://weather-${z.output}.png`)],
+    embeds: [new EmbedBuilder().setColor(env.COLOR as HexColorString).setImage(`attachment://weather-${z.output}.png`)],
     files: [file]
   })
 }
