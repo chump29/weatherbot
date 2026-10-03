@@ -38,7 +38,7 @@ jobs:
         run: bun run lint:biome:ci
 
       - name: Testing
-        run: bun run test
+        run: bun run test:coverage
 
   amd64:
     needs: [check]
