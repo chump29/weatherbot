@@ -82,7 +82,6 @@ await Promise.all(
         }
 
         match<string, void>(name)
-          .with("ping", (): void => expect(payload.content).toInclude("Pong"))
           .with("info", (): void => {
             const data = payload.embeds?.[0].data
 
@@ -93,6 +92,7 @@ await Promise.all(
             expect(data.description).not.toBeEmpty()
             expect(data.footer.text).toEndWith(author.name)
           })
+          .with("ping", (): void => expect(payload.content).toInclude("Pong"))
           .with("weather", (): void => {
             const { data } = payload.embeds[0]
 

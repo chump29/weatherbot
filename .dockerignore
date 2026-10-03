@@ -2,8 +2,9 @@
 
 !bun.lock
 !events/
-!utils/
 !healthcheck.sh
 !index.ts
 !package.json
+!prepare.min.mjs
 !tsconfig.json
+!utils/

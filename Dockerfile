@@ -6,10 +6,11 @@ WORKDIR /app
 
 ENV BUN_INSTALL_CACHE_DIR=/.bun-cache
 
+COPY .husky/prepare.min.mjs ./.husky/
 COPY package.json bun.lock ./
 
 RUN --mount=type=cache,target=/.bun-cache \
-  bun install --frozen-lockfile --production
+  bun ci --production
 
 # -=-
 

@@ -20,7 +20,7 @@
   },
   "type": "module",
   "scripts": {
-    "check": "bunx --bun depcheck --ignores=\"@postfmly/config,@types/*,bun,bun:*,lcov-total\" || :",
+    "check": "bunx --bun depcheck --ignores=\"@postfmly/config,@types/*,bun,bun:*,lcov-total\"",
     "dev": "bun --watch run index.ts",
     "preinstall": "bunx --bun only-allow bun",
     "lint": "bun run scan && bun run lint:spell && bun run lint:biome && bun run lint:env && bun run lint:ts",
@@ -32,7 +32,7 @@
     "npm:howfat": "bunx --bun howfat --dev-dependencies --registry-url https://npm.postfmly.com/",
     "npm:qnm": "bunx --bun qnm doctor",
     "npm:qnm:i": "bunx --bun qnm",
-    "prepare": "bun run --bun husky || :",
+    "prepare": "bun run --bun .husky/prepare.min.mjs",
     "prod": "bun run index.ts",
     "scan": "bun audit && bunx --bun cve-lite-cli --check-overrides",
     "scan:e18e": "bunx --bun @e18e/cli analyze",
@@ -70,7 +70,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^10.6.0",
-    "@postfmly/config": "^1.5.5",
+    "@postfmly/config": "^1.5.8",
     "expect-type": "^1.4.0",
     "husky": "^9.1.7",
     "lcov-total": "^2.1.1",
