@@ -71,6 +71,7 @@ if (Bun.env.NODE_ENV === "test") {
 }
 
 const env = cleanEnv(Bun.env, {
+  ACTIVITY: str({ default: "Forecasting" }),
   COLOR: colorValidator({ default: "#78866b" }),
   DEBUG: bool({ default: false, testDefault: true }),
   LOGO_NAME: str({ default: "weatherbot.webp" }),

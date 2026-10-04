@@ -52,6 +52,7 @@
 
 | 📝 Description | 📌 Variable |  {...} Value   |
 |:--------------:|:-----------:|:--------------:|
+|    Activity    |  ACTIVITY   |  Forecasting   |
 |  Embed Color   |    COLOR    |    #78866b     |
 |     Debug      |    DEBUG    | true/**false** |
 |    Bot Name    |    NAME     |   WeatherBot   |

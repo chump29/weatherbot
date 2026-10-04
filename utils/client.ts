@@ -65,7 +65,7 @@ const init = async (): Promise<Client> => {
     presence: {
       activities: [
         {
-          name: "Forecasting...",
+          name: `${env.ACTIVITY}...`,
           type: ActivityType.Custom
         }
       ]
