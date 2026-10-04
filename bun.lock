@@ -17,7 +17,7 @@
       },
       "devDependencies": {
         "@faker-js/faker": "^10.6.0",
-        "@postfmly/config": "^1.6.0",
+        "@postfmly/config": "^1.6.1",
         "expect-type": "^1.4.0",
         "husky": "^9.1.7",
         "lcov-total": "^2.1.1",
@@ -232,7 +232,7 @@
 
     "@postfmly/checkrate": ["@postfmly/checkrate@2.0.1", "https://npm.postfmly.com/@postfmly/checkrate/-/checkrate-2.0.1.tgz", { "dependencies": { "@jarrodek/pluralize": "^1.0.2", "@lukeed/ms": "^2.0.2", "@postfmly/logger": "^1.0.34", "@postfmly/types": "^1.0.3", "dayjs": "^1.11.23", "valibot": "^1.5.0" } }, "sha512-w5nxC7fpE12ZTt1orVG+uGzdfuFKcEK0FZCWTdI2/JuTHZr23OhuiH0cqR+oyrR8sUgE74b9GM5yUXyZxUc1DA=="],
 
-    "@postfmly/config": ["@postfmly/config@1.6.0", "https://npm.postfmly.com/@postfmly/config/-/config-1.6.0.tgz", { "dependencies": { "@biomejs/biome": "^2.5.15", "@types/bun": "^1.4.2", "@types/node": "^26.6.4", "cspell": "^10.3.6", "globals": "^17.13.0", "typescript": "^7.0.2" }, "bin": { "link-configs": "bin/link-configs" } }, "sha512-nXD/muv3HUqpcI7HzVLsklagbyYsVdA8q7JzeiFDZTck6TgXLRg7NcL65KlHUX6vBrxOrQQ/ZceosRLF4U7eog=="],
+    "@postfmly/config": ["@postfmly/config@1.6.1", "https://npm.postfmly.com/@postfmly/config/-/config-1.6.1.tgz", { "dependencies": { "@biomejs/biome": "^2.5.15", "@types/bun": "^1.4.2", "@types/node": "^26.6.4", "cspell": "^10.3.6", "globals": "^17.13.0", "typescript": "^7.0.2" }, "bin": { "link-configs": "bin/link-configs" } }, "sha512-vFx+QV+454gS4o9z6I973Kxq2b2KIKMHeN6sI5RfNy6SFF89pryNXomVY96CD5OKtSTke2Bgx7tCVFOnYM8g5A=="],
 
     "@postfmly/logger": ["@postfmly/logger@1.0.34", "https://npm.postfmly.com/@postfmly/logger/-/logger-1.0.34.tgz", { "dependencies": { "browser-or-node": "^3.0.0", "dayjs": "^1.11.23", "picocolors": "^1.1.1" } }, "sha512-M7z4krHN6A7tUQlMaZhm9xjN99iY9+KEzK/w+MwWznrTcBvxfFVtpjdhHQqoOiBygdel5hdSl5jl9FOd3naQlg=="],
 
@@ -358,7 +358,7 @@
 
     "globals": ["globals@17.13.0", "https://npm.postfmly.com/globals/-/globals-17.13.0.tgz", {}, "sha512-RwMTC61u7hrG3ZJMkZQOK4JLJrKS8QtoTii63EmWvFXHqycY9FObBJQCbsLxSO8kjKhWE5kV1GC+Vb1g3RI0Zg=="],
 
-    "hono": ["hono@4.13.12", "https://npm.postfmly.com/hono/-/hono-4.13.12.tgz", {}, "sha512-6E2QDAc9Ick9Sq77ZrGS/dk2WUYni91aufTw6LJKpV7w8kW5/GxVUc650FOADOmlwg3K+f7Pun6XlV+pYmW6gw=="],
+    "hono": ["hono@4.13.13", "https://npm.postfmly.com/hono/-/hono-4.13.13.tgz", {}, "sha512-CQ46U0ZkAGmbT/4UxdzzGJpacP2IeKgY4a5/tOI9AABbpOMfK739wfDXmv1usCk+3RkKj1hQy4/fjhiwa2xlrA=="],
 
     "husky": ["husky@9.1.7", "https://npm.postfmly.com/husky/-/husky-9.1.7.tgz", { "bin": { "husky": "bin.js" } }, "sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA=="],
 

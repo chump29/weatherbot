@@ -36,7 +36,7 @@ describe("client", (): void => {
 
     mock.module("../../utils/client.ts", (): unknown => ({
       TEST_CLIENT: {
-        login: jest.fn(),
+        login: jest.fn().mockResolvedValue(undefined),
         user: {
           displayName: env.NAME,
           tag
