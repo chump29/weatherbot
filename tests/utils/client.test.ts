@@ -16,12 +16,6 @@ beforeAll((): void => {
 
 describe("client", (): void => {
   test("shutdown", (): void => {
-    mock.module("../utils/db.ts", (): unknown => ({
-      DB: {
-        close: jest.fn()
-      }
-    }))
-
     spyOn(process, "exit").mockImplementation((code: number): never => {
       throw new Error(code.toString())
     })
