@@ -50,13 +50,15 @@
 
 #### Environment Variables:
 
-| 📝 Description | 📌 Variable |  {...} Value   |
-|:--------------:|:-----------:|:--------------:|
-|    Activity    |  ACTIVITY   |  Forecasting   |
-|  Embed Color   |    COLOR    |    #78866b     |
-|     Debug      |    DEBUG    | true/**false** |
-|    Bot Name    |    NAME     |   WeatherBot   |
-|   Bot Token    |    TOKEN    |    \<token>    |
+|     📝 Description      | 📌 Variable |  {...} Value   |
+|:-----------------------:|:-----------:|:--------------:|
+|        Activity         |  ACTIVITY   |  Forecasting   |
+| Embed Color<sup>1</sup> |    COLOR    |    #78866b     |
+|          Debug          |    DEBUG    | true/**false** |
+|        Bot Name         |    NAME     |   WeatherBot   |
+|        Bot Token        |    TOKEN    |    \<token>    |
+
+###### <sup>1</sup> #RRGGBB format <!-- markdownlint-disable-line MD001 -->
 
 ##### From `@postfmly/logoserver`:
 
