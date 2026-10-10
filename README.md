@@ -4,7 +4,7 @@
 
 ---
 
-![Bun](https://img.shields.io/badge/Bun-1.4.2-informational?style=plastic&logo=bun "Bun") &nbsp;
+![Bun](https://img.shields.io/badge/Bun-1.4.3-informational?style=plastic&logo=bun "Bun") &nbsp;
 ![discord.js](https://img.shields.io/badge/discord.js-^14.27.0-informational?style=plastic&logo=discord.js "discord.js")
 
 ![CodeQL](https://github.com/chump29/weatherbot/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
