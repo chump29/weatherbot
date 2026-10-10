@@ -17,6 +17,8 @@ import { find } from "zipcodes-us"
 import { author, version } from "../../package.json" with { type: "json" }
 import { env } from "../../utils/env.ts"
 
+const TIMEOUT: number = 10_000
+
 interface ICommandFile {
   create: () => RESTPostAPIChatInputApplicationCommandsJSONBody
   invoke: (interaction: ChatInputCommandInteraction) => Promise<void>
@@ -45,69 +47,73 @@ await Promise.all(
         expect(c.contexts ?? []).not.toBeEmpty()
       })
 
-      test("invoke", async (): Promise<void> => {
-        let zipCode: string = ""
+      test(
+        "invoke",
+        async (): Promise<void> => {
+          let zipCode: string = ""
 
-        if (name === "weather") {
-          let zip: ReturnType<typeof find>
-          do {
-            zipCode = fake.location.zipCode("#####")
+          if (name === "weather") {
+            let zip: ReturnType<typeof find>
+            do {
+              zipCode = fake.location.zipCode("#####")
 
-            zip = find(zipCode)
-          } while (!zip.isValid)
-        }
-
-        const interaction: ChatInputCommandInteraction = {
-          createdTimestamp: fake.date.past().getTime(),
-          deferReply: jest.fn().mockResolvedValue(undefined),
-          editReply: jest.fn().mockResolvedValue(undefined),
-          user: {
-            username: fake.internet.username()
-          } as User,
-          options: {
-            getString: jest.fn().mockReturnValue(zipCode)
+              zip = find(zipCode)
+            } while (!zip.isValid)
           }
-        } as unknown as ChatInputCommandInteraction
 
-        expect(await invoke(interaction)).toBeUndefined()
+          const interaction: ChatInputCommandInteraction = {
+            createdTimestamp: fake.date.past().getTime(),
+            deferReply: jest.fn().mockResolvedValue(undefined),
+            editReply: jest.fn().mockResolvedValue(undefined),
+            user: {
+              username: fake.internet.username()
+            } as User,
+            options: {
+              getString: jest.fn().mockReturnValue(zipCode)
+            }
+          } as unknown as ChatInputCommandInteraction
 
-        expect(interaction.deferReply).toHaveBeenCalledTimes(1)
-        expect(interaction.editReply).toHaveBeenCalledTimes(1)
+          expect(await invoke(interaction)).toBeUndefined()
 
-        const mockEditReply = interaction.editReply as ReturnType<typeof jest.fn>
-        const firstCallArgs = mockEditReply.mock.calls
-        const payload = firstCallArgs[0]?.[0]
-        if (!payload) {
-          throw new Error("Payload not found")
-        }
+          expect(interaction.deferReply).toHaveBeenCalledTimes(1)
+          expect(interaction.editReply).toHaveBeenCalledTimes(1)
 
-        match<string, void>(name)
-          .with("info", (): void => {
-            const data = payload.embeds?.[0].data
+          const mockEditReply = interaction.editReply as ReturnType<typeof jest.fn>
+          const firstCallArgs = mockEditReply.mock.calls
+          const payload = firstCallArgs[0]?.[0]
+          if (!payload) {
+            throw new Error("Payload not found")
+          }
 
-            expect(decimalToHex(data.color)).toBe(env.COLOR)
-            expect(data.author.icon_url).toBe(env.LOGO_URL)
-            expect(data.author.name).toBe(`${env.NAME} v${version}`)
-            expect(data.thumbnail.url).toBe(env.LOGO_URL)
-            expect(data.description).not.toBeEmpty()
-            expect(data.footer.text).toEndWith(author.name)
-          })
-          .with("ping", (): void => expect(payload.content).toInclude("Pong"))
-          .with("weather", (): void => {
-            const { data } = payload.embeds[0]
+          match<string, void>(name)
+            .with("info", (): void => {
+              const data = payload.embeds?.[0].data
 
-            expect(decimalToHex(data.color)).toBe(env.COLOR)
-            expect(data.image.url).toBe(`attachment://${name}-${zipCode}.png`)
+              expect(decimalToHex(data.color)).toBe(env.COLOR)
+              expect(data.author.icon_url).toBe(env.LOGO_URL)
+              expect(data.author.name).toBe(`${env.NAME} v${version}`)
+              expect(data.thumbnail.url).toBe(env.LOGO_URL)
+              expect(data.description).not.toBeEmpty()
+              expect(data.footer.text).toEndWith(author.name)
+            })
+            .with("ping", (): void => expect(payload.content).toInclude("Pong"))
+            .with("weather", (): void => {
+              const { data } = payload.embeds[0]
 
-            const { files } = payload
+              expect(decimalToHex(data.color)).toBe(env.COLOR)
+              expect(data.image.url).toBe(`attachment://${name}-${zipCode}.png`)
 
-            expect(files[0].attachment).toBeInstanceOf(Buffer)
-            expect(files[0].name).toBe(`${name}-${zipCode}.png`)
-          })
-          .otherwise((): never => {
-            throw new Error(`Payload tests not found for /${name}`)
-          })
-      })
+              const { files } = payload
+
+              expect(files[0].attachment).toBeInstanceOf(Buffer)
+              expect(files[0].name).toBe(`${name}-${zipCode}.png`)
+            })
+            .otherwise((): never => {
+              throw new Error(`Payload tests not found for /${name}`)
+            })
+        },
+        TIMEOUT
+      )
     })
   })
 )
