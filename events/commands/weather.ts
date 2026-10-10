@@ -20,6 +20,8 @@ import { find } from "zipcodes-us"
 import { bucket } from "../../utils/bucket.ts"
 import { env } from "../../utils/env.ts"
 
+const WRONG: string = "-# > ❌ Something went wrong"
+
 const ZIP_LEN: number = 5
 
 const ZipCodeSchema = pipe(string(), trim(), nonEmpty(), digits())
@@ -46,14 +48,14 @@ const getImage = async (city: string, state: string, zipcode: string): Promise<N
 
     const response: Response = await fetch(`https://wttr.in/${location}_0q.png`)
     if (!response.ok) {
-      error(`Fetch error status: ${response.status}`)
+      error(`❌ Fetch error ${response.status}: ${response.statusText}`)
 
       return null
     }
 
     return new AttachmentBuilder(Buffer.from(await response.arrayBuffer()), { name: `weather-${zipcode}.png` })
   } catch (e: unknown) {
-    error(`Could not get weather for ${zipcode}`, e)
+    error(`❌ Could not get weather for ${zipcode}`, e)
 
     return null
   }
@@ -72,21 +74,27 @@ const invoke = async (interaction: ChatInputCommandInteraction): Promise<void> =
 
   const z: SafeParseResult<typeof ZipCodeSchema> = safeParse(ZipCodeSchema, zipcode)
   if (!z.success) {
-    await interaction.editReply({ content: "-# > ❌ Invalid zip code format" })
+    await interaction.editReply({ content: WRONG })
+
+    error("❌ Invalid zip code format")
 
     return
   }
 
   const zip: ReturnType<typeof find> = find(z.output)
   if (!(zip.isValid && zip.city)) {
-    await interaction.editReply({ content: "-# > ❌ Zip code not found" })
+    await interaction.editReply({ content: WRONG })
+
+    error("❌ Zip code not found")
 
     return
   }
 
   const file: Nullable<AttachmentBuilder> = await getImage(zip.city, zip.stateCode, z.output)
   if (!file) {
-    await interaction.editReply({ content: "-# > ❌ Could not get weather" })
+    await interaction.editReply({ content: WRONG })
+
+    error("❌ Could not get weather")
 
     return
   }

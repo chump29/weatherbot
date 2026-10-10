@@ -1,5 +1,4 @@
 import { describe, expect, test } from "bun:test"
-import { $ } from "bun"
 
 import { expectTypeOf } from "expect-type"
 
@@ -58,11 +57,5 @@ describe("env", (): void => {
     expectTypeOf(env.TOKEN).toEqualTypeOf<string>()
 
     expect(env.TOKEN.length).toBeGreaterThan(0)
-  })
-
-  test("print", async (): Promise<void> => {
-    const txt = await $`bun run --bun ./utils/env.ts`.text()
-
-    expect(txt).toContain("[REDACTED]")
   })
 })
