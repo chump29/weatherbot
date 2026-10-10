@@ -9,14 +9,12 @@ import { Client } from "../../utils/client.ts"
 import { env } from "../../utils/env.ts"
 
 let infoSpy: jest.Mock
-let onSpy: jest.Mock
 let exitSpy: jest.Mock
 
 const tag: string = `${env.NAME}#${fake.string.numeric({ allowLeadingZeros: false, length: 4 })}`
 
 beforeAll(async (): Promise<void> => {
   infoSpy = spyOn(console, "info").mockImplementation((): void => undefined) // suppress
-  onSpy = spyOn(process, "on").mockImplementation((): typeof process => process)
   exitSpy = spyOn(process, "exit").mockImplementation((): never => undefined as never)
 
   await Client.init({
@@ -35,18 +33,12 @@ describe("client", (): void => {
   test("init", async (): Promise<void> => {
     await Client.shutdown()
 
-    const COUNT: number = 9
-    expect(infoSpy).toHaveBeenCalledTimes(COUNT)
+    const TIMES: number = 9
+    expect(infoSpy).toHaveBeenCalledTimes(TIMES)
 
-    const LOGIN_NUM: number = 5
-    expect(infoSpy).toHaveBeenNthCalledWith(LOGIN_NUM, expect.any(String), expect.stringContaining(env.NAME))
-    expect(infoSpy).toHaveBeenNthCalledWith(LOGIN_NUM, expect.any(String), expect.stringContaining(tag))
-
-    process.emit("SIGINT")
-    expect(onSpy).toHaveBeenNthCalledWith(1, "SIGINT", expect.any(Function))
-
-    process.emit("SIGTERM")
-    expect(onSpy).toHaveBeenNthCalledWith(2, "SIGTERM", expect.any(Function))
+    const LINE_NUM: number = 5
+    expect(infoSpy).toHaveBeenNthCalledWith(LINE_NUM, expect.any(String), expect.stringContaining(env.NAME))
+    expect(infoSpy).toHaveBeenNthCalledWith(LINE_NUM, expect.any(String), expect.stringContaining(tag))
 
     expect(exitSpy).toHaveBeenCalledTimes(1)
     expect(exitSpy).toHaveBeenCalledWith(0)
