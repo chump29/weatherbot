@@ -7,7 +7,9 @@ import { type Optional } from "@postfmly/types"
 
 import { fakerEN_US as fake } from "@faker-js/faker"
 import {
+  type APIEmbed,
   type ChatInputCommandInteraction,
+  EmbedBuilder,
   type RESTPostAPIChatInputApplicationCommandsJSONBody,
   type User
 } from "discord.js"
@@ -98,10 +100,10 @@ await Promise.all(
             })
             .with("ping", (): void => expect(payload.content).toInclude("Pong"))
             .with("weather", (): void => {
-              const { data } = payload.embeds[0]
+              const { data }: { data: APIEmbed } = EmbedBuilder.from(payload.embeds?.[0])
 
               expect(decimalToHex(data.color)).toBe(env.COLOR)
-              expect(data.image.url).toBe(`attachment://${name}-${zipCode}.png`)
+              expect(data.image?.url).toBe(`attachment://${name}-${zipCode}.png`)
 
               const { files } = payload
 
