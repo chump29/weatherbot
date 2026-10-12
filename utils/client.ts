@@ -31,8 +31,6 @@ class WeatherBotClient implements IWeatherBotClient {
 
     info("🔴 Shutting down...")
 
-    this.isShutdown = true
-
     await this.CLIENT.destroy()
 
     await this.LOGO_SERVER.stop()
