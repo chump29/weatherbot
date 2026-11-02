@@ -20,7 +20,7 @@
   },
   "type": "module",
   "scripts": {
-    "deps": "bunx --bun depcheck --ignores=\"@postfmly/config,@types/*,bun,bun:*,lcov-total\"",
+    "deps": "bunx --bun depcheck --ignores=\"@postfmly/config,@types/*,bun:*,lcov-total\"",
     "dev": "bun run --bun --watch index.ts",
     "env": "bun run --bun utils/env.ts",
     "env:test": "NODE_ENV=test bun run env",
