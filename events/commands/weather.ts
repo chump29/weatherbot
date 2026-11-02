@@ -45,7 +45,11 @@ const getImage = async (city: string, state: string, zipcode: string): Promise<N
   try {
     const location = `${city}, ${state} (${zipcode})`.replaceAll(" ", "+")
 
-    const response = await fetch(`https://wttr.in/${location}_0q.png`)
+    const response = await fetch(`https://wttr.in/${location}_0q.png`, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+      }
+    })
     if (!response.ok) {
       error(`❌ Fetch error ${response.status}: ${response.statusText}`)
 
