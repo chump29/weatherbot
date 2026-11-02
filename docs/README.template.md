@@ -1,4 +1,4 @@
-# ![WeatherBot](./utils/images/weatherbot.webp) WeatherBot
+# ![WeatherBot](./utils/images/weatherbot.webp "WeatherBot") WeatherBot
 
 > - WeatherBot for Discord
 
@@ -33,13 +33,13 @@
 #### Role Permissions:
 
 | ⚙️ Permissions |
-|:--------------:|
+| :------------: |
 |   EmbedLinks   |
 
 #### Commands:
 
 |     📋 Task     |      🔧 Command      |
-|:---------------:|:--------------------:|
+| :-------------: | :------------------: |
 | Display Weather | `/weather <zipcode>` |
 |      Info       |       `/info`        |
 |      Ping       |       `/ping`        |
@@ -51,7 +51,7 @@
 #### Environment Variables:
 
 |     📝 Description      | 📌 Variable |  {...} Value   |
-|:-----------------------:|:-----------:|:--------------:|
+| :---------------------: | :---------: | :------------: |
 |        Activity         |  ACTIVITY   |  Forecasting   |
 | Embed Color<sup>1</sup> |    COLOR    |    #78866b     |
 |          Debug          |    DEBUG    | true/**false** |
@@ -63,7 +63,7 @@
 ##### From `@postfmly/logoserver`:
 
 | 📝 Description | 📌 Variable |    {...} Value    |
-|:--------------:|:-----------:|:-----------------:|
+| :------------: | :---------: | :---------------: |
 |   Logo Name    |  LOGO_NAME  |  weatherbot.webp  |
 |   Local Path   |  LOGO_PATH  |  ./utils/images   |
 |      Port      |  LOGO_PORT  | **random**/[port] |
@@ -71,12 +71,12 @@
 
 ##### From `@postfmly/checkrate`:
 
-###### *NOTE: Rate limited to 1 request per 1 second*
+###### _NOTE: Rate limited to 1 request per 1 second_
 
 #### Deployment:
 
 |  📜 Script  |  🔧 Command   |
-|:-----------:|:-------------:|
+| :---------: | :-----------: |
 |    Full     | `./build.sh`  |
 | Docker Only | `./docker.sh` |
 

@@ -7,22 +7,21 @@ import {
   AttachmentBuilder,
   type ChatInputCommandInteraction,
   EmbedBuilder,
-  type HexColorString,
   InteractionContextType,
   MessageFlags,
   type RESTPostAPIChatInputApplicationCommandsJSONBody,
   SlashCommandBuilder,
   type SlashCommandStringOption
 } from "discord.js"
-import { digits, nonEmpty, pipe, type SafeParseResult, safeParse, string, trim } from "valibot"
+import { digits, nonEmpty, pipe, safeParse, string, trim } from "valibot"
 import { find } from "zipcodes-us"
 
 import { bucket } from "../../utils/bucket.ts"
 import { env } from "../../utils/env.ts"
 
-const WRONG: string = "-# > ❌ Something went wrong"
+const WRONG = "-# > ❌ Something went wrong"
 
-const ZIP_LEN: number = 5
+const ZIP_LEN = 5
 
 const ZipCodeSchema = pipe(string(), trim(), nonEmpty(), digits())
 
@@ -44,9 +43,9 @@ const create = (): RESTPostAPIChatInputApplicationCommandsJSONBody =>
 
 const getImage = async (city: string, state: string, zipcode: string): Promise<Nullable<AttachmentBuilder>> => {
   try {
-    const location: string = `${city}, ${state} (${zipcode})`.replaceAll(" ", "+")
+    const location = `${city}, ${state} (${zipcode})`.replaceAll(" ", "+")
 
-    const response: Response = await fetch(`https://wttr.in/${location}_0q.png`)
+    const response = await fetch(`https://wttr.in/${location}_0q.png`)
     if (!response.ok) {
       error(`❌ Fetch error ${response.status}: ${response.statusText}`)
 
@@ -70,9 +69,9 @@ const invoke = async (interaction: ChatInputCommandInteraction): Promise<void> =
     return
   }
 
-  const zipcode: string = interaction.options.getString("zipcode") as string
+  const zipcode = interaction.options.getString("zipcode")
 
-  const z: SafeParseResult<typeof ZipCodeSchema> = safeParse(ZipCodeSchema, zipcode)
+  const z = safeParse(ZipCodeSchema, zipcode)
   if (!z.success) {
     await interaction.editReply({ content: WRONG })
 
@@ -81,7 +80,7 @@ const invoke = async (interaction: ChatInputCommandInteraction): Promise<void> =
     return
   }
 
-  const zip: ReturnType<typeof find> = find(z.output)
+  const zip = find(z.output)
   if (!(zip.isValid && zip.city)) {
     await interaction.editReply({ content: WRONG })
 
@@ -90,7 +89,7 @@ const invoke = async (interaction: ChatInputCommandInteraction): Promise<void> =
     return
   }
 
-  const file: Nullable<AttachmentBuilder> = await getImage(zip.city, zip.stateCode, z.output)
+  const file = await getImage(zip.city, zip.stateCode, z.output)
   if (!file) {
     await interaction.editReply({ content: WRONG })
 
@@ -100,7 +99,7 @@ const invoke = async (interaction: ChatInputCommandInteraction): Promise<void> =
   }
 
   await interaction.editReply({
-    embeds: [new EmbedBuilder().setColor(env.COLOR as HexColorString).setImage(`attachment://weather-${z.output}.png`)],
+    embeds: [new EmbedBuilder().setColor(env.COLOR).setImage(`attachment://weather-${z.output}.png`)],
     files: [file]
   })
 }

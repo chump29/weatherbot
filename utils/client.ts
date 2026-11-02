@@ -54,7 +54,7 @@ class WeatherBotClient implements IWeatherBotClient {
       LOGO_NAME: env.LOGO_NAME,
       LOGO_PATH: env.LOGO_PATH,
       LOGO_PORT: env.LOGO_PORT
-    } as ILogoServerConfig)
+    } satisfies ILogoServerConfig)
 
     await this.LOGO_SERVER.start()
 
@@ -90,6 +90,4 @@ class WeatherBotClient implements IWeatherBotClient {
   }
 }
 
-const Client: IWeatherBotClient = new WeatherBotClient()
-
-export { Client }
+export const Client = new WeatherBotClient()
