@@ -115,9 +115,6 @@ await Promise.all(
             })
             .with("ping", (): void => expect(content).toInclude("Pong"))
             .with("weather", (): void => {
-              expect(decimalToHex(data.color)).toBe(env.COLOR)
-              expect(data.image?.url).toBe(`attachment://${name}-${zipCode}.png`)
-
               const { files } = payload
 
               if (!(files && Array.isArray(files)) || files.length === 0) {

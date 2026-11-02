@@ -6,7 +6,6 @@ import { type Nullable } from "@postfmly/types"
 import {
   AttachmentBuilder,
   type ChatInputCommandInteraction,
-  EmbedBuilder,
   InteractionContextType,
   MessageFlags,
   type RESTPostAPIChatInputApplicationCommandsJSONBody,
@@ -17,7 +16,6 @@ import { digits, nonEmpty, pipe, safeParse, string, trim } from "valibot"
 import { find } from "zipcodes-us"
 
 import { bucket } from "../../utils/bucket.ts"
-import { env } from "../../utils/env.ts"
 
 const WRONG = "-# > ❌ Something went wrong"
 
@@ -102,10 +100,7 @@ const invoke = async (interaction: ChatInputCommandInteraction): Promise<void> =
     return
   }
 
-  await interaction.editReply({
-    embeds: [new EmbedBuilder().setColor(env.COLOR).setImage(`attachment://weather-${z.output}.png`)],
-    files: [file]
-  })
+  await interaction.editReply({ files: [file] })
 }
 
 export { create, invoke }
