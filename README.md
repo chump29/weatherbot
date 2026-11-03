@@ -5,7 +5,7 @@
 ---
 
 ![Bun](https://img.shields.io/badge/Bun-1.4.4-informational?style=plastic&logo=bun "Bun") &nbsp;
-![discord.js](https://img.shields.io/badge/discord.js-^14.28.0-informational?style=plastic&logo=discord.js "discord.js")
+![discord.js](https://img.shields.io/badge/discord.js-14.28.0-informational?style=plastic&logo=discord.js "discord.js")
 
 ![CodeQL](https://github.com/chump29/weatherbot/workflows/CodeQL/badge.svg "CodeQL") &nbsp;
 ![Coverage](https://img.shields.io/badge/Coverage-76.44%25-success?style=plastic&logo=jest "Coverage")
