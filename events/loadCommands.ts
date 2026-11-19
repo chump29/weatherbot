@@ -5,7 +5,7 @@ import { error } from "@postfmly/logger"
 import { type Client, Events, type Interaction } from "discord.js"
 
 interface IClientReady {
-  invoke: (client: Client) => Promise<void>
+  invoke: (client: Client<true>) => Promise<void>
 }
 
 interface IInteractionCreate {
@@ -13,17 +13,20 @@ interface IInteractionCreate {
 }
 
 export const loadCommands = async (client: Client): Promise<void> => {
-  const interactionCreate: IInteractionCreate = await import(join(import.meta.dir, `${Events.InteractionCreate}.ts`))
-  client.on(Events.InteractionCreate, async (interaction: Interaction): Promise<void> => {
-    try {
-      await interactionCreate.invoke(interaction)
-    } catch (e: unknown) {
-      error(`❌ ${"commandName" in interaction ? interaction.commandName : "Unknown"}:`, e)
-    }
+  const [interactionCreate, clientReady] = await Promise.all<[Promise<IInteractionCreate>, Promise<IClientReady>]>([
+    import(join(import.meta.dir, `${Events.InteractionCreate}.ts`)),
+    import(join(import.meta.dir, `${Events.ClientReady}.ts`))
+  ])
+
+  client.on(Events.InteractionCreate, (interaction: Interaction): void => {
+    interactionCreate.invoke(interaction).catch((e: unknown): void => {
+      error(`❌ ${interaction.isCommand() ? interaction.commandName : "Unknown"}:`, e)
+    })
   })
 
-  const clientReady: IClientReady = await import(join(import.meta.dir, `${Events.ClientReady}.ts`))
-  client.once(Events.ClientReady, async (c: Client): Promise<void> => {
-    await clientReady.invoke(c)
+  client.once(Events.ClientReady, (c: Client<true>): void => {
+    clientReady.invoke(c).catch((e: unknown): void => {
+      error(`❌ ${Events.ClientReady}:`, e)
+    })
   })
 }

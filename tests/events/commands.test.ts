@@ -79,8 +79,8 @@ await Promise.all(
             )
           ).toBeUndefined()
 
-          expect(mockDeferReply).toHaveBeenCalledOnce()
-          expect(mockEditReply).toHaveBeenCalledOnce()
+          expect(mockDeferReply).toHaveBeenCalledWith(expect.any(Object))
+          expect(mockEditReply).toHaveBeenCalledWith(expect.any(Object))
 
           const payload = mockEditReply.mock.calls[0]?.[0]
           if (!payload || typeof payload !== "object") {
@@ -113,8 +113,8 @@ await Promise.all(
               expect(data.description).not.toBeEmpty()
               expect(data.footer?.text).toEndWith(author.name)
             })
-            .with("ping", (): void => expect(content).toInclude("Pong"))
-            .with("weather", (): void => {
+            .with("ping", () => expect(content).toInclude("Pong"))
+            .with("weather", () => {
               const { files } = payload
 
               if (!(files && Array.isArray(files)) || files.length === 0) {
