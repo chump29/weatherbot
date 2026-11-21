@@ -10,8 +10,7 @@ import { type APIEmbed, type AttachmentBuilder, type ChatInputCommandInteraction
 import { match } from "ts-pattern"
 import { find } from "zipcodes-us"
 
-import { type ICreate } from "../../events/clientReady.ts"
-import { type IInvoke } from "../../events/interactionCreate.ts"
+import { type ICommand } from "../../events/cache.ts"
 import { author, version } from "../../package.json" with { type: "json" }
 import { env } from "../../utils/env.ts"
 
@@ -31,7 +30,7 @@ const commands = (await readdir(dir)).filter((file: string): boolean => file.end
 
 await Promise.all(
   commands.map(async (command: string): Promise<void> => {
-    const file: ICreate & IInvoke = await import(`${path.join("../..", dir)}/${command}`)
+    const file: ICommand = await import(`${path.join("../..", dir)}/${command}`)
 
     const name = path.basename(command, ".ts")
 
@@ -105,7 +104,7 @@ await Promise.all(
           }
 
           match<string, void>(name)
-            .with("info", (): void => {
+            .with("info", () => {
               expect(decimalToHex(data.color)).toBe(env.COLOR)
               expect(data.author?.icon_url).toBe(env.LOGO_URL)
               expect(data.author?.name).toBe(`${env.NAME} v${version}`)

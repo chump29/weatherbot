@@ -65,7 +65,7 @@ const getImage = async (city: string, state: string, zipcode: string): Promise<N
 const invoke = async (interaction: ChatInputCommandInteraction): Promise<void> => {
   await interaction.deferReply({ flags: MessageFlags.Ephemeral })
 
-  if (!bucket.allow(interaction.user.username)) {
+  if (!bucket.allow(interaction.user.id)) {
     await interaction.editReply({ content: "-# > ❌ Rate limit exceeded" })
 
     return
